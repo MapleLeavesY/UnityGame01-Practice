@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 public class Lander : MonoBehaviour
@@ -89,6 +90,7 @@ public class Lander : MonoBehaviour
         float maxVelocityScore = 100f;
         float multiplicationFactorAngle = 100f;
         float multiplicationFactorSpeed = 10f;
+        
         angleScore = maxAngleScore - Mathf.Abs(angle - 1f) * multiplicationFactorAngle;
         speedScore = maxVelocityScore - (collision2D.relativeVelocity.magnitude) * multiplicationFactorSpeed;
         Debug.Log("AngleScore: " + angleScore);
@@ -120,5 +122,18 @@ public class Lander : MonoBehaviour
     {
         float consumptionFactor = 1f;
         fuelVolume -= consumptionFactor * Time.deltaTime;
+    }
+
+    public float GetSpeedX()
+    {
+        return Mathf.Abs(_landerRigidbody2D.velocity.x);
+    }
+    public float GetSpeedY()
+    {
+        return Mathf.Abs(_landerRigidbody2D.velocity.y);
+    }
+    public float GetFuel()
+    {
+        return fuelVolume;
     }
 }
