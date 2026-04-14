@@ -6,12 +6,15 @@ using UnityEngine;
 public class StatsUI : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI statsTextMash;
-    int score = Coin.Instance.GetScore();
-    float timer = Coin.Instance.GetTimer();
-
-    float speedX = Lander.Instance.GetSpeedX();
-    float speedY = Lander.Instance.GetSpeedY();
-    float fuelVolume = Lander.Instance.GetFuel();
+    private Lander lander;
+    private Coin coin;
+    private void Start()
+    {
+        lander = Lander.Instance;
+        coin = Coin.Instance;
+    }
+        
+    
 
     private void Update()
     {
@@ -19,12 +22,16 @@ public class StatsUI : MonoBehaviour
     }
     private void UpdateStatsTextMash()
     {
+        int score = coin.GetScore();
+        float timer = Mathf.Round(lander.GetTimer());
+        float speedX = Mathf.Round(lander.GetSpeedX());
+        float speedY = Mathf.Round(lander.GetSpeedY());
+        float fuelVolume = lander.GetFuel();
         statsTextMash.text = 
             score + "\n" +
             timer + "\n" +
             speedX + "\n" +
             speedY + "\n" +
-            fuelVolume;
+            $"{fuelVolume:F2}";
     }
-
 }

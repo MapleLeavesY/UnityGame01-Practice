@@ -14,7 +14,7 @@ public class Coin : MonoBehaviour
         get;
     }
     private int score;
-    private float timer;
+    
     private void Awake()
     {
         Instance = this;
@@ -24,10 +24,7 @@ public class Coin : MonoBehaviour
         Lander.Instance.CoinPickUp += Lander_CoinPickUp;
         Lander.Instance.OnLandered += Lander_OnLanded;
     }
-    private void Update()
-    {
-        timer += Time.deltaTime;
-    }
+
     private void Lander_OnLanded(object sender, Lander.OnLanderedEventArgs e)
     {
         CoinAdd(e.finalScore);
@@ -51,9 +48,5 @@ public class Coin : MonoBehaviour
     public int GetScore()
     {
         return score;
-    }
-    public float GetTimer()
-    {
-        return timer;
     }
 }

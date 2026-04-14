@@ -23,17 +23,20 @@ public class Lander : MonoBehaviour
     }
     private Rigidbody2D _landerRigidbody2D;
     float fuelVolume = 10f;
+    private float timer = 0;
     private void Awake()
     {
         Instance = this;
         _landerRigidbody2D = GetComponent<Rigidbody2D>();
     }
-
+    private void Update()
+    {
+        timer += Time.deltaTime;
+    }
     private void FixedUpdate()
     {
         OnBeforeForce?.Invoke(this, EventArgs.Empty);
         
-        Debug.Log("Fuel: " + fuelVolume);
         if(fuelVolume <= 0f) return;
 
         if( Keyboard.current.wKey.isPressed||
@@ -135,5 +138,9 @@ public class Lander : MonoBehaviour
     public float GetFuel()
     {
         return fuelVolume;
+    }
+    public float GetTimer()
+    {
+        return timer;
     }
 }
