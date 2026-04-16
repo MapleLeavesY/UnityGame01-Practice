@@ -4,11 +4,8 @@ using UnityEngine;
 public class LandingPad : MonoBehaviour
 {
     [SerializeField] private int scoreMultiplier;
-    public event EventHandler<OnLanderEventArgs> OnLandered;
-    public class OnLanderEventArgs : EventArgs
-    {
-        public float score;
-    }
+    private Coin coin;
+    float coinScore = 0;
     public static LandingPad Instance
     {
         private set;
@@ -18,8 +15,19 @@ public class LandingPad : MonoBehaviour
     {
         Instance = this;
     }
+    private void Start()
+    {
+        coin = Coin.Instance;
+        coin.CoinPickUp += GetCoinScore;
+    }
+    public void GetCoinScore(object sender, Coin.CoinScoreCounting e)
+    {
+        AddScore(e.score);
+    }
     private void OnCollisionEnter2D(Collision2D collision2D)
     {
+        
+        float finalScore = 0;
         float score = 0;
         float minimumDot = .90f;
         float minimumRelativeSpeed = 3f;
@@ -44,11 +52,16 @@ public class LandingPad : MonoBehaviour
             float angleScore = Dot * angleScoreFactor;
             score = (speedScore + angleScore) * scoreMultiplier;
             Debug.Log("Score: " + score);
-            OnLandered?.Invoke(this, new OnLanderEventArgs
-            {
-                score = score
-            });
+            
+            finalScore = score + coinScore;
+             Debug.Log("finalScore: " + finalScore);
         }
 
+        
+
+    }
+    private void AddScore(float score)
+    {
+        coinScore += score;
     }
 }
