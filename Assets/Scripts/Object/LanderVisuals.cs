@@ -5,6 +5,7 @@ public class LanderVisuals : MonoBehaviour
    [SerializeField] private ParticleSystem leftThrusterParticleSystem;
    [SerializeField] private ParticleSystem middleThrusterParticleSystem;
    [SerializeField] private ParticleSystem rightThrusterParticleSystem;
+   
     Lander lander;
     private void Awake()
     {

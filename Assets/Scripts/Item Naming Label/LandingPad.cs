@@ -12,7 +12,9 @@ public class LandingPad : MonoBehaviour
         TooSteepAngle,
         TooFastLanding,
     }
+    public event EventHandler GameState;
     public event EventHandler<SuccessfulUI> LandedUIPick;
+    
     public class SuccessfulUI : EventArgs
     {
         public LandingType landingType;
@@ -40,16 +42,28 @@ public class LandingPad : MonoBehaviour
     {
         coin = Coin.Instance;
         coin.CoinPickUp += GetCoinScore;
+        Lander.Instance.EmergencyLanding += GetLanderLandedArea;
     }
 
-
+    float gameGailureNumericalFactors = 0f;
 
     public void GetCoinScore(object sender, Coin.CoinScoreCounting e)
     {
         AddScore(e.score);
     }
-
-
+    public void GetLanderLandedArea(object sender, System.EventArgs e)
+    {
+        
+        LandedUIPick?.Invoke(this, new SuccessfulUI
+        {
+            landingType = LandingType.WrongLandingArea,
+            coinScore = gameGailureNumericalFactors,
+            otherscore = gameGailureNumericalFactors,
+            velocity = gameGailureNumericalFactors,
+            dotvector = gameGailureNumericalFactors,
+            scoreMultiplier = 0,
+        });
+    }
 
     private void OnCollisionEnter2D(Collision2D collision2D)
     {
@@ -68,14 +82,14 @@ public class LandingPad : MonoBehaviour
                 LandedUIPick?.Invoke(this, new SuccessfulUI
              {
                 landingType = LandingType.TooSteepAngle,
-                coinScore = 0f,
-                otherscore = 0f,
+                coinScore = gameGailureNumericalFactors,
+                otherscore = gameGailureNumericalFactors,
                 velocity = collision2D.relativeVelocity.magnitude,
                 dotvector = Dot,
                 scoreMultiplier = scoreMultiplier,
              });
-
-                return;
+            GameState?.Invoke(this, EventArgs.Empty);
+            return;
             }
             if(collision2D.relativeVelocity.magnitude > minimumRelativeSpeed)
             {//速度过大，降落失败
@@ -84,13 +98,14 @@ public class LandingPad : MonoBehaviour
                 LandedUIPick?.Invoke(this, new SuccessfulUI
              {
                 landingType = LandingType.TooFastLanding,
-                coinScore = 0f,
-                otherscore = 0f,
+                coinScore = gameGailureNumericalFactors,
+                otherscore = gameGailureNumericalFactors,
                 velocity = collision2D.relativeVelocity.magnitude,
                 dotvector = Dot,
                 scoreMultiplier = scoreMultiplier,
              });
-                return;
+            GameState?.Invoke(this, EventArgs.Empty);
+            return;
             }
 
             float speedScoreFactor = 10f;
@@ -104,21 +119,17 @@ public class LandingPad : MonoBehaviour
              Debug.Log("finalScore: " + finalScore);
 
              //撞击之后，着陆之后，计算成功条件事件
-             LandedUIPick?.Invoke(this, new SuccessfulUI
-             {
+            LandedUIPick?.Invoke(this, new SuccessfulUI
+            {
                 landingType = LandingType.Success,
                 coinScore = coinScore,
                 otherscore = score,
                 velocity = collision2D.relativeVelocity.magnitude,
                 dotvector = Dot,
                 scoreMultiplier = scoreMultiplier,
-             });
-             Debug.Log("LandedUIPick?.Invoke(this, new SuccessfulUI");
-
+            });
+            GameState?.Invoke(this, EventArgs.Empty);
         }   
-
-        
-
     }
     private void AddScore(float score)
     {
