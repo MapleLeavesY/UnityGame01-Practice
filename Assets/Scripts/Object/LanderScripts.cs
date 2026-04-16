@@ -17,6 +17,7 @@ public class Lander : MonoBehaviour
     public event EventHandler OnBeforeForce;
     public event EventHandler CoinPickUp;
     
+    
     private Rigidbody2D _landerRigidbody2D;
     float fuelVolume = 10f;
     float fuelAmountMax;
