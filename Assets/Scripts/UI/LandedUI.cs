@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.Collections;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -13,12 +15,17 @@ public class LandedUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI titleTextMesh;
     [SerializeField] private TextMeshProUGUI statsTextMesh;
     [SerializeField] private GameObject landerExplosionVfx;
-    [SerializeField] private Button nextButton;
+    [SerializeField] private TextMeshProUGUI nextButtonTextMesh;
+    [SerializeField] private Button NextButton;
+
+
+    private Action nextButtonClickAction;
+
     private void Awake()
     {
-        nextButton.onClick.AddListener(() =>
+        NextButton.onClick.AddListener(() =>
         {
-            SceneManager.LoadScene(0);
+            nextButtonClickAction();
         });
     }
     private void Start()
@@ -36,12 +43,16 @@ public class LandedUI : MonoBehaviour
         if(e.landingType == LandingPad.LandingType.Success)
         {
             titleTextMesh.text = "SUCCESSFUL LANDING!";
+            nextButtonTextMesh.text = "CONTINUE";
+            nextButtonClickAction = GameManager.Instance.GotoNextLevel;
         }
         else
         {
             titleTextMesh.text = "<color = #ff0000>CRASH!</color>";
+            nextButtonTextMesh.text = "RESTART";
             Instantiate(landerExplosionVfx, lander.transform.position, Quaternion.identity);
             lander.gameObject.SetActive(false);
+            nextButtonClickAction = GameManager.Instance.RetryLevel;
         }
 
         statsTextMesh.text = 
@@ -53,6 +64,7 @@ public class LandedUI : MonoBehaviour
         Show();
     }
 
+    
     private void Show()
     {
         gameObject.SetActive(true);
@@ -61,5 +73,5 @@ public class LandedUI : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
-
+    
 }

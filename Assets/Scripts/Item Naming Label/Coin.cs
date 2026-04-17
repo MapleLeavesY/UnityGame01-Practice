@@ -1,27 +1,24 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem.iOS;
+using UnityEngine.SocialPlatforms.Impl;
 
-
+public static class GameEvent
+{
+    public static event Action<int> OnCoinCollected;
+    public static void CoinCollected(int score)
+    {
+        OnCoinCollected?.Invoke(score);
+    }
+}
 
 public class Coin : MonoBehaviour
 {
-    public static Coin Instance
-    {
-        private set;
-        get;
-    }
-    private void Awake()
-    {
-        Instance = this;
-    }
-
-
-    public event EventHandler<CoinScoreCounting> CoinPickUp;
     public class CoinScoreCounting : EventArgs
     {
         public float score;
@@ -36,12 +33,8 @@ public class Coin : MonoBehaviour
     {
         if(collider2D.gameObject.TryGetComponent(out Lander lander))
         {//碰到飞船
-            float ScoreFactor = 500f; 
-            CoinPickUp?.Invoke(this, new CoinScoreCounting
-            {
-              score = ScoreFactor,  
-            });
-
+            int ScoreFactor = 500; 
+            GameEvent.CoinCollected(ScoreFactor);
             DeletionOfCoinObjects();
         }
     }

@@ -18,7 +18,7 @@ public class LandingPad : MonoBehaviour
     public class SuccessfulUI : EventArgs
     {
         public LandingType landingType;
-        public float coinScore;
+        public int coinScore;
         public float otherscore;
         public float velocity;
         public float dotvector;
@@ -26,7 +26,7 @@ public class LandingPad : MonoBehaviour
         
     } 
     private Coin coin;
-    float coinScore = 0;
+    int coinScore = 0;
     public static LandingPad Instance
     {
         private set;
@@ -40,17 +40,11 @@ public class LandingPad : MonoBehaviour
     }
     private void Start()
     {
-        coin = Coin.Instance;
-        coin.CoinPickUp += GetCoinScore;
         Lander.Instance.EmergencyLanding += GetLanderLandedArea;
+        GameEvent.OnCoinCollected += AddScore;
     }
 
-    float gameGailureNumericalFactors = 0f;
-
-    public void GetCoinScore(object sender, Coin.CoinScoreCounting e)
-    {
-        AddScore(e.score);
-    }
+    int gameGailureNumericalFactors = 0;
     public void GetLanderLandedArea(object sender, System.EventArgs e)
     {
         
@@ -131,7 +125,7 @@ public class LandingPad : MonoBehaviour
             GameState?.Invoke(this, EventArgs.Empty);
         }   
     }
-    private void AddScore(float score)
+    private void AddScore(int score)
     {
         coinScore += score;
     }

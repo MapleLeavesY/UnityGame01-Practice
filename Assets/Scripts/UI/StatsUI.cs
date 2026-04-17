@@ -14,18 +14,18 @@ public class StatsUI : MonoBehaviour
     [SerializeField] private GameObject speedRightArrowGameObject;
     [SerializeField] private Image FuelBar;
     
+
+    
+
     private Lander lander;
-    private Coin coin;
+
+    
     int coinScore = 0;
     private void Start()
     {
         lander = Lander.Instance;
-        coin = Coin.Instance;
-        coin.CoinPickUp += GetCoinScore;
-    }
-    public void GetCoinScore(object sender, Coin.CoinScoreCounting e)
-    {
-        AddScore(Mathf.RoundToInt(e.score));
+
+        GameEvent.OnCoinCollected += AddScore;
     }
     private void Update()
     {
@@ -33,6 +33,7 @@ public class StatsUI : MonoBehaviour
     }
     private void UpdateStatsTextMash()
     {
+        int level = GameManager.Instance.GetLevel();
         int score = coinScore;
         float timer = Mathf.Round(lander.GetTimer());
         float speedX = Mathf.Abs(Mathf.Round(lander.GetSpeedX()));
@@ -46,16 +47,17 @@ public class StatsUI : MonoBehaviour
         speedLeftArrowGameObject.SetActive(lander.GetSpeedX() < 0);
         speedRightArrowGameObject.SetActive(lander.GetSpeedX() > 0);
 
-        statsTextMash.text = 
+        statsTextMash.text =
+            level + "\n" +
             score + "\n" +
             timer + "\n" +
             speedX + "\n" +
             speedY;
     }
-
-
     private void AddScore(int score)
     {
         coinScore += score;
     }
+
+    
 }
