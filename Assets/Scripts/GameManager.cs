@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
             if(gameLevel.GetLevelNumber() == levelNumber)
             {
                 GameLevel spawnLevelNumber = Instantiate(gameLevel, Vector3.zero, Quaternion.identity);
+                
                 Lander.Instance.transform.position = spawnLevelNumber.GetLanderStartPosition();
             }
         }
