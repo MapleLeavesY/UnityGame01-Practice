@@ -1,11 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private static int levelNumber = 1;
     [SerializeField] private List<GameLevel> gameLevels;
+
+    public event Action<CameraSize> OnLevelLoaded;
     
     public static GameManager Instance
     {
@@ -27,8 +31,10 @@ public class GameManager : MonoBehaviour
             if(gameLevel.GetLevelNumber() == levelNumber)
             {
                 GameLevel spawnLevelNumber = Instantiate(gameLevel, Vector3.zero, Quaternion.identity);
-                
-                Lander.Instance.transform.position = spawnLevelNumber.GetLanderStartPosition();
+                Lander.Instance.transform.position = spawnLevelNumber.GetLanderStartPosition();//场景创建
+
+                CameraSize size = GetComponent<CameraSize>();//场景获取传入参数
+                OnLevelLoaded?.Invoke(size);
             }
         }
     }

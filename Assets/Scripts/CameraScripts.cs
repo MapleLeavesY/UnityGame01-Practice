@@ -1,14 +1,95 @@
 using System;
+using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class CameraFollow : MonoBehaviour
+enum CameraState
 {
+    Overview,//大地图
+    Gameplay,//进入操作视角
+}
+public class CameraScripts : MonoBehaviour
+{
+    [SerializeField] private GameManager gameManager;
+    CameraState cameraState;
+    private Camera cam;
+
     public Transform target;
     public Vector2 deadZone = new Vector2(2f, 2f);
     public float smoothTime = 0.2f;
     private Vector3 _velocity = Vector3.zero;
-
+//====================================相机变量
+    private float GAMEPLAYSIZE = 10f;
+    private float overviewSize;
+    private float targetSize;
+    private float sizeVelocity;
+    public float sizeSmoothTime = 0.1f;
+    private void Awake()
+    {
+        cam = GetComponent<Camera>();
+    }
+    private void Start()
+    {
+        gameManager.OnLevelLoaded += CameraInit;
+        cameraState = CameraState.Overview;
+    }
+    private void Update()
+    {
+        int level = gameManager.GetLevel();
+        EnterGameplay();
+    }
     private void LateUpdate()
+    {
+        CameraSizeSmoothDamp();
+        switch(cameraState)
+        {   
+            default:
+            case CameraState.Overview:
+
+
+            break;
+            case CameraState.Gameplay:
+                CameraFollow();
+            break;
+        }
+    }
+    private void EnterGameplay()
+    {
+        if(cameraState == CameraState.Overview && (Keyboard.current.wKey.isPressed ||
+           Keyboard.current.aKey.isPressed ||
+           Keyboard.current.dKey.isPressed))
+        {
+            cameraState = CameraState.Gameplay;
+            targetSize = GAMEPLAYSIZE;
+        }
+    }
+    private void CameraSizeSmoothDamp()
+    {
+        cam.orthographicSize = Mathf.SmoothDamp
+        (
+            cam.orthographicSize,
+            targetSize,
+            ref sizeVelocity,
+            sizeSmoothTime
+        );
+    }
+    private void CameraInit(CameraSize size)
+    {
+        if(size != null)
+        {   
+            overviewSize = size.config.overviewSize;
+        }
+        else
+        {
+            Debug.Log("No size was found.");
+            overviewSize = 20f;
+        }
+        targetSize = overviewSize;
+        cam.orthographicSize = overviewSize;
+    }
+    
+    
+    private void CameraFollow()
     {
         if(target == null) return;
         Vector3 cameraCurrent = transform.position;
@@ -49,4 +130,8 @@ public class CameraFollow : MonoBehaviour
             );
         }
     }
+}
+public class CameraChange
+{
+    
 }
