@@ -55,7 +55,8 @@ public class CameraScripts : MonoBehaviour
     }
     private void EnterGameplay()
     {
-        if(cameraState == CameraState.Overview && (Keyboard.current.wKey.isPressed ||
+        if(cameraState == CameraState.Overview && 
+          (Keyboard.current.wKey.isPressed ||
            Keyboard.current.aKey.isPressed ||
            Keyboard.current.dKey.isPressed))
         {

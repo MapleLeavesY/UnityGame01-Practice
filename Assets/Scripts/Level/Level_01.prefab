@@ -282,8 +282,8 @@ Transform:
   - {fileID: 4372715890286240896}
   - {fileID: 2113361069835348410}
   - {fileID: 6013846893974288184}
-  - {fileID: 7712973311709064594}
   - {fileID: 2297899676854605046}
+  - {fileID: 7712973311709064594}
   - {fileID: 889378841949787499}
   - {fileID: 3716458334891577278}
   m_Father: {fileID: 0}
@@ -347,7 +347,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   config:
-    overviewSize: 20
+    overviewSize: 25
 --- !u!1 &3356100112915595934
 GameObject:
   m_ObjectHideFlags: 0
@@ -1065,7 +1065,7 @@ Transform:
   m_GameObject: {fileID: 6667016687516293723}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.1505, y: 0.5476, z: 0.062127367}
+  m_LocalPosition: {x: 6.1504, y: -3.2774, z: 0.062127367}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1117,7 +1117,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 138.05075, y: 67.98761}
+  m_Size: {x: 144.54175, y: 75.63768}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
