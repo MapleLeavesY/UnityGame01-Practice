@@ -33,8 +33,6 @@ public class GameManager : MonoBehaviour
                 GameLevel spawnLevelNumber = Instantiate(gameLevel, Vector3.zero, Quaternion.identity);
                 Lander.Instance.transform.position = spawnLevelNumber.GetLanderStartPosition();//场景创建
 
-                
-
                 CameraSize size = spawnLevelNumber.GetComponentInChildren<CameraSize>();//场景获取传入参数
                 if (size == null)
                     Debug.LogError("CameraSize component NOT found on level prefab!");
