@@ -6,6 +6,7 @@ using Unity.Collections;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -20,7 +21,7 @@ public class LandedUI : MonoBehaviour
 
 
     private Action nextButtonClickAction;
-
+    private Action GameInputClear;
     private void Awake()
     {
         NextButton.onClick.AddListener(() =>
@@ -40,6 +41,8 @@ public class LandedUI : MonoBehaviour
     
     private void Lander_OnLanded(object sender, LandingPad.SuccessfulUI e)
     {
+        GameInput.Instance.GameInputClear();//输入组件清除
+
         if(e.landingType == LandingPad.LandingType.Success)
         {
             titleTextMesh.text = "SUCCESSFUL LANDING!";

@@ -68,9 +68,9 @@ public class Lander : MonoBehaviour
             default:
             case State.WaitingToStart:
             
-            if( Keyboard.current.wKey.isPressed||
-                Keyboard.current.aKey.isPressed||
-                Keyboard.current.dKey.isPressed)
+            if( GameInput.Instance.IsUpactionPressed()||
+                GameInput.Instance.IsRightactionPressed()||
+                GameInput.Instance.IsLeftactionPressed())
             {
                 _landerRigidbody2D.gravityScale = GRAVITY_NORMAL;
                 state = State.Normal;
@@ -79,28 +79,28 @@ public class Lander : MonoBehaviour
             break;
             case State.Normal:
             if(fuelVolume <= 0f) return;
-            if( Keyboard.current.wKey.isPressed||
-                Keyboard.current.aKey.isPressed||
-                Keyboard.current.dKey.isPressed)
+            if( GameInput.Instance.IsUpactionPressed()   ||
+                GameInput.Instance.IsRightactionPressed()||
+                GameInput.Instance.IsLeftactionPressed())
             {
                 FuelConsumption();
             }
 
-            if (Keyboard.current.wKey.isPressed)
+            if (GameInput.Instance.IsUpactionPressed())
             {
                 float force = 700f;
                 _landerRigidbody2D.AddForce(transform.up * (Time.deltaTime * force));
                 OnUpForce?.Invoke(this, EventArgs.Empty);
                 
             }
-            if (Keyboard.current.aKey.isPressed)
+            if (GameInput.Instance.IsLeftactionPressed())
             {
                 float turnSpeed = +100f;
                 _landerRigidbody2D.AddTorque(turnSpeed * Time.deltaTime);
                 OnLeftForce?.Invoke(this, EventArgs.Empty);
                 
             }
-            if (Keyboard.current.dKey.isPressed)
+            if (GameInput.Instance.IsRightactionPressed())
             {
                 float turnSpeed = -100f;
                 _landerRigidbody2D.AddTorque(turnSpeed * Time.deltaTime);
