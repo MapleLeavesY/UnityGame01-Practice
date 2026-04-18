@@ -27,6 +27,7 @@ public class LandingPad : MonoBehaviour
     } 
     private Coin coin;
     int coinScore = 0;
+    
     public static LandingPad Instance
     {
         private set;
@@ -123,7 +124,10 @@ public class LandingPad : MonoBehaviour
                 scoreMultiplier = scoreMultiplier,
             });
             GameState?.Invoke(this, EventArgs.Empty);
-        }   
+        }
+
+        
+           
     }
     private void AddScore(int score)
     {

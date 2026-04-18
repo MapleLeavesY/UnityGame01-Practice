@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,17 +11,20 @@ public class GameInput : MonoBehaviour
         private set;
         get;
     }
-
+    public event Action OnMenuButtonPressed;
     Actions actions;
     private void Awake()
     {   
         Instance = this;
         actions = new Actions();
         actions.Enable();
-
+        actions.Player.Menu.performed += Menu_Performed;
 
     }
-
+    private void Menu_Performed(InputAction.CallbackContext context)
+    {
+        OnMenuButtonPressed?.Invoke();
+    }
 
     public bool IsUpactionPressed()
     {

@@ -18,7 +18,7 @@ public class StatsUI : MonoBehaviour
     
 
     private Lander lander;
-
+    
     
     int coinScore = 0;
     private void Start()

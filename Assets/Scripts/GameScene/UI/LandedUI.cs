@@ -8,22 +8,29 @@ using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
 public class LandedUI : MonoBehaviour
 {
+    public static LandedUI Instance
+    {
+        private set;
+        get;
+    }
+
     [SerializeField] private Lander lander;
     [SerializeField] private TextMeshProUGUI titleTextMesh;
     [SerializeField] private TextMeshProUGUI statsTextMesh;
     [SerializeField] private GameObject landerExplosionVfx;
     [SerializeField] private TextMeshProUGUI nextButtonTextMesh;
     [SerializeField] private Button NextButton;
-
-
+    private float totalScore;
     private Action nextButtonClickAction;
     private Action GameInputClear;
     private void Awake()
     {
+        Instance = this;
         NextButton.onClick.AddListener(() =>
         {
             nextButtonClickAction();
@@ -48,6 +55,9 @@ public class LandedUI : MonoBehaviour
             titleTextMesh.text = "SUCCESSFUL LANDING!";
             nextButtonTextMesh.text = "CONTINUE";
             nextButtonClickAction = GameManager.Instance.GotoNextLevel;
+
+            totalScore = Mathf.Round(e.coinScore + e.otherscore);
+            ScoreSave.Instance.AddScore(totalScore);
         }
         else
         {
@@ -63,7 +73,6 @@ public class LandedUI : MonoBehaviour
         Mathf.Round(e.dotvector) + "\n" +
         Mathf.Round(e.scoreMultiplier) + "\n" +
         Mathf.Round(e.coinScore + e.otherscore);
-
         Show();
     }
 
@@ -76,5 +85,8 @@ public class LandedUI : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
-    
+    public float GetTotalScore()
+    {
+        return totalScore;
+    }
 }
