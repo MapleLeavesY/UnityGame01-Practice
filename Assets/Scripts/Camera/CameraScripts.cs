@@ -56,9 +56,10 @@ public class CameraScripts : MonoBehaviour
     private void EnterGameplay()
     {
         if(cameraState == CameraState.Overview && 
-          (GameInput.Instance.IsUpactionPressed()||
-           GameInput.Instance.IsRightactionPressed()||
-           GameInput.Instance.IsLeftactionPressed()))
+          (GameInput.Instance.IsUpactionPressed() ||
+           GameInput.Instance.IsRightactionPressed() ||
+           GameInput.Instance.IsLeftactionPressed()) || 
+          (GameInput.Instance.GetMovementInputVector2() != Vector2.zero))
         {
             cameraState = CameraState.Gameplay;
             targetSize = GAMEPLAYSIZE;
