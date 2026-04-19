@@ -20,6 +20,7 @@ public class Lander : MonoBehaviour
     public event EventHandler OnLeftForce;
     public event EventHandler OnBeforeForce;
     public event EventHandler CoinPickUp;
+    public event Action FuelPickUp;
     public event EventHandler EmergencyLanding;
     
     public enum State
@@ -133,6 +134,8 @@ public class Lander : MonoBehaviour
         if(collision2D.gameObject.TryGetComponent(out Fuel fuel))
         {
             float fuelRechargingFactor = 10f;
+            FuelPickUp?.Invoke();
+
             fuelVolume += fuelRechargingFactor; 
             if(fuelVolume > fuelAmountMax)
             {

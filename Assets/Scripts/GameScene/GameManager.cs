@@ -90,11 +90,13 @@ public class GameManager : MonoBehaviour
     public void PauseGame()
     {
         Time.timeScale = 0f;
+        Debug.Log("PauseGame 调用了");
         OnGamePaused?.Invoke();
     }
     public void UnPauseGame()
     {
         Time.timeScale = 1f;
+        Debug.Log("PauseUI 收到暂停事件");
         OnGameUnPaused?.Invoke();
     }
     public static void InitGameLevel()

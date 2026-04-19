@@ -43,7 +43,8 @@ public class LandedUI : MonoBehaviour
         {
             pad.LandedUIPick += Lander_OnLanded;
         }
-        Hide();
+        NextButton.Select();
+        Hide(); 
     }
     
     private void Lander_OnLanded(object sender, LandingPad.SuccessfulUI e)

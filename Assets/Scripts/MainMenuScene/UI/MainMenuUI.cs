@@ -10,13 +10,20 @@ public class MainMenuUI : MonoBehaviour
 
     private void Awake()
     {
+        Time.timeScale = 1f;
+
         playButton.onClick.AddListener(() =>
         {//游戏开启按钮lanbda表达式
             SceneLoader.LoadScene(SceneLoader.SceneName.GameScene);
         });
         exitButton.onClick.AddListener(() =>
         {//游戏退出按钮lanbda表达式
-            
+            Application.Quit();
         });
+    }
+
+    private void Start()
+    {
+        playButton.Select();
     }
 }
