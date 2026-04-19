@@ -12,9 +12,9 @@ public class LandingPad : MonoBehaviour
         TooSteepAngle,
         TooFastLanding,
     }
+
     public event EventHandler GameState;
     public event EventHandler<SuccessfulUI> LandedUIPick;
-    
     public class SuccessfulUI : EventArgs
     {
         public LandingType landingType;
@@ -45,7 +45,6 @@ public class LandingPad : MonoBehaviour
         GameEvent.OnCoinCollected += AddScore;
     }
 
-    int gameGailureNumericalFactors = 0;
     public void GetLanderLandedArea(object sender, System.EventArgs e)
     {
         
@@ -59,10 +58,10 @@ public class LandingPad : MonoBehaviour
             scoreMultiplier = 0,
         });
     }
+    int gameGailureNumericalFactors = 0;
 
     private void OnCollisionEnter2D(Collision2D collision2D)
     {
-        
         float finalScore = 0;
         float score = 0;
         float minimumDot = .90f;
@@ -71,9 +70,11 @@ public class LandingPad : MonoBehaviour
         if(collision2D.gameObject.TryGetComponent(out Lander lander))
         {//判断撞击者是否为Lander
 
+            Debug.Log("检测到 Lander");
+
+
             if(Dot < minimumDot)
             {//方向点积过偏，降落失败
-                Debug.Log("Angle exceeds the limit value");
                 LandedUIPick?.Invoke(this, new SuccessfulUI
              {
                 landingType = LandingType.TooSteepAngle,
@@ -88,8 +89,6 @@ public class LandingPad : MonoBehaviour
             }
             if(collision2D.relativeVelocity.magnitude > minimumRelativeSpeed)
             {//速度过大，降落失败
-                Debug.Log("Velocity exceeds the limit value");
-
                 LandedUIPick?.Invoke(this, new SuccessfulUI
              {
                 landingType = LandingType.TooFastLanding,
@@ -111,8 +110,6 @@ public class LandingPad : MonoBehaviour
             Debug.Log("Score: " + score);
             
             finalScore = score + coinScore;
-             Debug.Log("finalScore: " + finalScore);
-
              //撞击之后，着陆之后，计算成功条件事件
             LandedUIPick?.Invoke(this, new SuccessfulUI
             {
@@ -125,10 +122,9 @@ public class LandingPad : MonoBehaviour
             });
             GameState?.Invoke(this, EventArgs.Empty);
         }
-
-        
            
     }
+
     private void AddScore(int score)
     {
         coinScore += score;

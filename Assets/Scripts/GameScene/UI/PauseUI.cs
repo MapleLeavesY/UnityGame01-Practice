@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.Profiling;
 using Unity.VisualScripting;
 using UnityEditor;
@@ -10,6 +11,13 @@ public class PauseUI : MonoBehaviour
 {
     [SerializeField] private Button resumeButton;
     [SerializeField] private Button mainMenuButton;
+    
+    [SerializeField] private Button backGroundVolumeButton;
+    [SerializeField] private Button gameVolumeButton;
+
+    [SerializeField] private TextMeshProUGUI soundVolumeTextMesh;
+    [SerializeField] private TextMeshProUGUI musicVolumeTextMesh;
+
 
     private GameManager gameManager;
     private CanvasGroup canvasGroup;
@@ -23,6 +31,16 @@ public class PauseUI : MonoBehaviour
         }
 
         Hide();
+        backGroundVolumeButton.onClick.AddListener(() =>
+        {
+            SoundManager.Instance.ChangeSoundVolume();
+            soundVolumeTextMesh.text = "SOUND: " + SoundManager.Instance.GetSoundVolume();
+        });
+        gameVolumeButton.onClick.AddListener(() =>
+        {
+            MusicManager.Instance.ChangeMusicVolume();
+            musicVolumeTextMesh.text = "MUSIC: " + MusicManager.Instance.GetMusicVolume();
+        });
 
         resumeButton.onClick.AddListener(() =>
         {
@@ -45,7 +63,8 @@ public class PauseUI : MonoBehaviour
     private void Start()
     {
         StartCoroutine(Rebind());
-
+        soundVolumeTextMesh.text = "SOUND: " + SoundManager.Instance.GetSoundVolume();
+        musicVolumeTextMesh.text = "MUSIC: " + MusicManager.Instance.GetMusicVolume();
         resumeButton.Select();
     }
     private IEnumerator Rebind()

@@ -22,6 +22,7 @@ public class Lander : MonoBehaviour
     public event EventHandler CoinPickUp;
     public event Action FuelPickUp;
     public event EventHandler EmergencyLanding;
+    public event Action OnLandingType;
     
     public enum State
     {
@@ -125,6 +126,10 @@ public class Lander : MonoBehaviour
         if(!collision2D.gameObject.TryGetComponent(out LandingPad landingPad))
         {
             EmergencyLanding?.Invoke(this, EventArgs.Empty);
+        }
+        else
+        {
+            OnLandingType?.Invoke();
         }
         state = State.GameOver;
     }
