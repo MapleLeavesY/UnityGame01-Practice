@@ -554,8 +554,8 @@ SpriteShapeRenderer:
   - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
   - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
   m_LocalAABB:
-    m_Center: {x: -1.0614243, y: 12.700443, z: 0}
-    m_Extent: {x: 63.558083, y: 34.815983, z: 0}
+    m_Center: {x: -0.28034973, y: 27.986465, z: 0}
+    m_Extent: {x: 64.33916, y: 50.102005, z: 0}
   m_SpriteSortPoint: 0
 --- !u!114 &262910005188162361
 MonoBehaviour:
@@ -613,6 +613,14 @@ MonoBehaviour:
       corner: 1
       m_CornerMode: 1
     - position: {x: -58.728416, y: 47.516426, z: 0}
+      leftTangent: {x: 0, y: 0, z: 0}
+      rightTangent: {x: 0, y: 0, z: 0}
+      mode: 0
+      height: 1
+      spriteIndex: 0
+      corner: 1
+      m_CornerMode: 1
+    - position: {x: -53.981422, y: 54.07279, z: 0}
       leftTangent: {x: 0, y: 0, z: 0}
       rightTangent: {x: 0, y: 0, z: 0}
       mode: 0
@@ -724,7 +732,111 @@ MonoBehaviour:
       spriteIndex: 0
       corner: 1
       m_CornerMode: 1
-    - position: {x: 56.405735, y: 1.4516027, z: 0}
+    - position: {x: 50.69596, y: 11.257737, z: 0}
+      leftTangent: {x: 0, y: 0, z: 0}
+      rightTangent: {x: 0, y: 0, z: 0}
+      mode: 0
+      height: 1
+      spriteIndex: 0
+      corner: 1
+      m_CornerMode: 1
+    - position: {x: 53.75956, y: 25.030174, z: 0}
+      leftTangent: {x: 0, y: 0, z: 0}
+      rightTangent: {x: 0, y: 0, z: 0}
+      mode: 0
+      height: 1
+      spriteIndex: 0
+      corner: 1
+      m_CornerMode: 1
+    - position: {x: 50.23929, y: 41.989586, z: 0}
+      leftTangent: {x: 0, y: 0, z: 0}
+      rightTangent: {x: 0, y: 0, z: 0}
+      mode: 0
+      height: 1
+      spriteIndex: 0
+      corner: 1
+      m_CornerMode: 1
+    - position: {x: 47.07949, y: 47.042755, z: 0}
+      leftTangent: {x: 0, y: 0, z: 0}
+      rightTangent: {x: 0, y: 0, z: 0}
+      mode: 0
+      height: 1
+      spriteIndex: 0
+      corner: 1
+      m_CornerMode: 1
+    - position: {x: -19.837704, y: 60.30953, z: 0}
+      leftTangent: {x: 0, y: 0, z: 0}
+      rightTangent: {x: 0, y: 0, z: 0}
+      mode: 0
+      height: 1
+      spriteIndex: 0
+      corner: 1
+      m_CornerMode: 1
+    - position: {x: -42.504578, y: 67.78791, z: 0}
+      leftTangent: {x: 0, y: 0, z: 0}
+      rightTangent: {x: 0, y: 0, z: 0}
+      mode: 0
+      height: 1
+      spriteIndex: 0
+      corner: 1
+      m_CornerMode: 1
+    - position: {x: -64.30791, y: 46.193226, z: 0}
+      leftTangent: {x: 0, y: 0, z: 0}
+      rightTangent: {x: 0, y: 0, z: 0}
+      mode: 0
+      height: 1
+      spriteIndex: 0
+      corner: 1
+      m_CornerMode: 1
+    - position: {x: -58.582146, y: 76.26947, z: 0}
+      leftTangent: {x: 0, y: 0, z: 0}
+      rightTangent: {x: 0, y: 0, z: 0}
+      mode: 0
+      height: 1
+      spriteIndex: 0
+      corner: 1
+      m_CornerMode: 1
+    - position: {x: 5.6059093, y: 78.08847, z: 0}
+      leftTangent: {x: 0, y: 0, z: 0}
+      rightTangent: {x: 0, y: 0, z: 0}
+      mode: 0
+      height: 1
+      spriteIndex: 0
+      corner: 1
+      m_CornerMode: 1
+    - position: {x: 56.862244, y: 76.78502, z: 0}
+      leftTangent: {x: 0, y: 0, z: 0}
+      rightTangent: {x: 0, y: 0, z: 0}
+      mode: 0
+      height: 1
+      spriteIndex: 0
+      corner: 1
+      m_CornerMode: 1
+    - position: {x: 64.05881, y: 61.127235, z: 0}
+      leftTangent: {x: 0, y: 0, z: 0}
+      rightTangent: {x: 0, y: 0, z: 0}
+      mode: 0
+      height: 1
+      spriteIndex: 0
+      corner: 1
+      m_CornerMode: 1
+    - position: {x: 58.178764, y: 44.896782, z: 0}
+      leftTangent: {x: 0, y: 0, z: 0}
+      rightTangent: {x: 0, y: 0, z: 0}
+      mode: 0
+      height: 1
+      spriteIndex: 0
+      corner: 1
+      m_CornerMode: 1
+    - position: {x: 58.108368, y: 30.94101, z: 0}
+      leftTangent: {x: 0, y: 0, z: 0}
+      rightTangent: {x: 0, y: 0, z: 0}
+      mode: 0
+      height: 1
+      spriteIndex: 0
+      corner: 1
+      m_CornerMode: 1
+    - position: {x: 56.40573, y: 1.4516027, z: 0}
       leftTangent: {x: 0, y: 0, z: 0}
       rightTangent: {x: 0, y: 0, z: 0}
       mode: 0
@@ -803,6 +915,7 @@ MonoBehaviour:
   - {x: -29.844866, y: 1.8529141}
   - {x: -64.61951, y: 10.464953}
   - {x: -58.728416, y: 47.516426}
+  - {x: -53.981422, y: 54.00061}
   - {x: -47.204742, y: 28.70647}
   - {x: -28.871874, y: 30.697315}
   - {x: -14.716822, y: 18.518246}
@@ -816,7 +929,20 @@ MonoBehaviour:
   - {x: 32.310036, y: -0.45167637}
   - {x: 35.951973, y: -0.5754814}
   - {x: 38.748604, y: 31.50877}
-  - {x: 56.405735, y: 1.4516027}
+  - {x: 50.69596, y: 11.257737}
+  - {x: 53.75956, y: 25.030174}
+  - {x: 50.23929, y: 41.989586}
+  - {x: 47.07949, y: 47.042755}
+  - {x: -19.837704, y: 60.30953}
+  - {x: -42.504578, y: 67.78791}
+  - {x: -64.30791, y: 46.193226}
+  - {x: -58.582146, y: 76.26947}
+  - {x: 5.6059093, y: 78.08847}
+  - {x: 56.862244, y: 76.78502}
+  - {x: 64.05881, y: 61.127235}
+  - {x: 58.178764, y: 44.896782}
+  - {x: 58.108368, y: 30.94101}
+  - {x: 56.40573, y: 1.4516027}
   - {x: 62.496655, y: -1.6530657}
   - {x: 44.814568, y: -22.11554}
   - {x: 35.721966, y: -9.396949}
@@ -874,6 +1000,7 @@ PolygonCollider2D:
       - {x: -29.844866, y: 1.8529141}
       - {x: -64.61951, y: 10.464953}
       - {x: -58.728416, y: 47.516426}
+      - {x: -53.981422, y: 54.00061}
       - {x: -47.204742, y: 28.70647}
       - {x: -28.871874, y: 30.697315}
       - {x: -14.716822, y: 18.518246}
@@ -887,7 +1014,20 @@ PolygonCollider2D:
       - {x: 32.310036, y: -0.45167637}
       - {x: 35.951973, y: -0.5754814}
       - {x: 38.748604, y: 31.50877}
-      - {x: 56.405735, y: 1.4516027}
+      - {x: 50.69596, y: 11.257737}
+      - {x: 53.75956, y: 25.030174}
+      - {x: 50.23929, y: 41.989586}
+      - {x: 47.07949, y: 47.042755}
+      - {x: -19.837704, y: 60.30953}
+      - {x: -42.504578, y: 67.78791}
+      - {x: -64.30791, y: 46.193226}
+      - {x: -58.582146, y: 76.26947}
+      - {x: 5.6059093, y: 78.08847}
+      - {x: 56.862244, y: 76.78502}
+      - {x: 64.05881, y: 61.127235}
+      - {x: 58.178764, y: 44.896782}
+      - {x: 58.108368, y: 30.94101}
+      - {x: 56.40573, y: 1.4516027}
       - {x: 62.496655, y: -1.6530657}
       - {x: 44.814568, y: -22.11554}
       - {x: 35.721966, y: -9.396949}

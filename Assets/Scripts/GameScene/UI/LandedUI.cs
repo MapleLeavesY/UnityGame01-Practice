@@ -1,16 +1,7 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using Unity.Collections;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
-using UnityEditor.SearchService;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
-using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
-
 public class LandedUI : MonoBehaviour
 {
     public static LandedUI Instance

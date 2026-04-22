@@ -5,7 +5,6 @@ using JetBrains.Annotations;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem.iOS;
 using UnityEngine.SocialPlatforms.Impl;
 
 public static class GameEvent
